@@ -24,13 +24,20 @@
 
 #import <UIKit/UIKit.h>
 
+// Swift有Option后，OC引入nonnull和nullable，这个Macro,是为了减轻开发者代码量，在NS_ASSUME_NONNULL_BEGIN和NS_ASSUME_NONNULL_END之间，所有指针对象都默认设置为nonnull
 NS_ASSUME_NONNULL_BEGIN
 
+// 这一句的作用:类似#import？没有这一句，声明dataSource和delegate属性就会报没有这个类型/协议
 @protocol MKDropdownMenuDataSource, MKDropdownMenuDelegate;
 
+// 继承自UIView
 @interface MKDropdownMenu : UIView
 
+// 为什么要用IBOutlet？我这里也没有nib文件。删除了，也可以运行。
+// 这个属性，是为了追踪data soutce对象的变化，所以在这个类的接口(interface)中定义这个属性。这个属性可以是任何类，所以用id；另外，这个属性要confrom相关的protocol(这里是MKDropdownMenuDataSource)
+// 注意，这类属性一般用weak
 @property (nullable, weak, nonatomic) IBOutlet id<MKDropdownMenuDataSource> dataSource;
+// 所以这个属性是为了追踪另一些行为、对象的咯
 @property (nullable, weak, nonatomic) IBOutlet id<MKDropdownMenuDelegate> delegate;
 
 /// The view the dropdown to be presented in. If not specified, the dropdown will be presented in the containing window.
@@ -153,6 +160,10 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
+// 一定要写在MKDropdownMenu类下面
+// 但是单独写在.h文件,却不需要导入MKDropdownMenu类。
+// 如果这个协议只用在某个类中，应该把协议定义在该类中
+// 如果这个协议用在很多类中，就应该定义在单独文件中
 @protocol MKDropdownMenuDataSource <NSObject>
 @required
 
