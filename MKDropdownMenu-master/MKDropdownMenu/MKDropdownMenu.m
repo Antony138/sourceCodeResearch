@@ -24,6 +24,7 @@
 
 #import "MKDropdownMenu.h"
 
+// 一些常量
 #pragma mark - Constants -
 
 static const NSTimeInterval kAnimationDuration = 0.25;
@@ -38,6 +39,7 @@ static const CGFloat kShadowOpacity = 0.2;
 static NSString * const kCellIdentifier = @"cell";
 
 
+// 定义了一个UIColor的category
 @interface UIColor (MKDropdownMenu)
 + (UIColor *)mk_defaultSeparatorColor;
 @end
@@ -51,6 +53,7 @@ static NSString * const kCellIdentifier = @"cell";
 
 #pragma mark - Component Button -
 
+// 用CoreGraphics绘制了一张UIImage？
 static UIImage * MKDropdownMenuDisclosureIndicatorImage() {
     CGFloat a = kDefaultDisclosureIndicatorSize;
     CGFloat h = a * 0.866;
@@ -70,6 +73,7 @@ static UIImage * MKDropdownMenuDisclosureIndicatorImage() {
 }
 
 
+// Button类
 @interface MKDropdownMenuComponentButton : UIButton
 @property (readonly, nonatomic) UIImageView *disclosureIndicatorView;
 @property (readonly, nonatomic) UIView *containerView;

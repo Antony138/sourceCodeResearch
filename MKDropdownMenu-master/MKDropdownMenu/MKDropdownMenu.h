@@ -40,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 所以这个属性是为了追踪另一些行为、对象的咯
 @property (nullable, weak, nonatomic) IBOutlet id<MKDropdownMenuDelegate> delegate;
 
+/// 这个就是下拉菜单的view了
 /// The view the dropdown to be presented in. If not specified, the dropdown will be presented in the containing window.
 @property (nullable, weak, nonatomic) IBOutlet UIView *presentingView;
 
@@ -49,6 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// If presented in scroll view, its bottom content inset will be updated to fit the dropdown. Default = YES.
 @property (assign, nonatomic) BOOL adjustsContentInset;
 
+// UI_APPEARANCE_SELECTOR表示: 这个属性允许使用UIAppearance Protocol中的方法(进行自定义外观?)
 /// Show a shadow under the dropdown. Default = YES.
 @property (assign, nonatomic) BOOL dropdownDropsShadow UI_APPEARANCE_SELECTOR;
 
@@ -124,6 +126,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// The currently expanded component. NSNotFound when no components are selected.
 @property (readonly, nonatomic) NSInteger selectedComponent;
 
+// 为什么要用方法来返回，不直接定义一个属性？
 /// The number of components in the dropdown (cached from the data source).
 - (NSInteger)numberOfComponents;
 
